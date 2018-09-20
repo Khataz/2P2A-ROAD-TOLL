@@ -1,3 +1,5 @@
+package default_package;
+
 public class Car {
 
 	private float speed = 0;
@@ -5,17 +7,17 @@ public class Car {
 	private int visibility = 100;
 
 	public void speedUp() {
-		// TODO - implement Car.speedUp
+		// TODO - implement default_package.Car.speedUp
 		throw new UnsupportedOperationException();
 	}
 
 	public void slowDown() {
-		// TODO - implement Car.slowDown
+		// TODO - implement default_package.Car.slowDown
 		throw new UnsupportedOperationException();
 	}
 
 	public Object detectObject() {
-		// TODO - implement Car.detectObject
+		// TODO - implement default_package.Car.detectObject
 		throw new UnsupportedOperationException();
 	}
 
@@ -24,7 +26,7 @@ public class Car {
 	 * @param Toll
 	 */
 	public void passToll(AbstractToll Toll) {
-		// TODO - implement Car.passToll
+		// TODO - implement default_package.Car.passToll
 		throw new UnsupportedOperationException();
 	}
 
