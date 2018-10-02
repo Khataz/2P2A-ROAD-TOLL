@@ -3,3 +3,9 @@ target/
 *.idea
 **/.DS_Store
 .DS_Store
+
+*.class
+*.project
+.classpath
+.settings/*
+*.yml
