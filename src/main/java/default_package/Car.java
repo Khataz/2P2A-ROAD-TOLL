@@ -2,32 +2,36 @@ package default_package;
 
 public class Car {
 
-	private float speed = 0;
-	private float acceleration = 0;
-	private int visibility = 100;
+	private double speed;
+	private double acceleration;
+	private static final int visibility = 150;
+	private Position pos;
 
-	public void speedUp() {
-		// TODO - implement default_package.Car.speedUp
-		throw new UnsupportedOperationException();
-	}
+	public Car(double speed, double acceleration, Position pos) {
+	    this.speed = speed;
+	    this.acceleration = acceleration;
+	    this.pos = pos;
+    }
 
-	public void slowDown() {
-		// TODO - implement default_package.Car.slowDown
-		throw new UnsupportedOperationException();
+    public Car() {
+	    this(30.0, 0.0, new Position());
+    }
+
+	public void changeAcceleration(Sign sign) {
+	    //TODO
 	}
 
 	public Object detectObject() {
-		// TODO - implement default_package.Car.detectObject
-		throw new UnsupportedOperationException();
-	}
+        // TODO
+        return null;
+    }
 
 	/**
 	 * 
 	 * @param Toll
 	 */
 	public void passToll(AbstractToll Toll) {
-		// TODO - implement default_package.Car.passToll
-		throw new UnsupportedOperationException();
+		//TODO
 	}
 
 }

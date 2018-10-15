@@ -2,6 +2,11 @@ package default_package;
 
 public class Sign {
 
-	private int speedLimit;
+	private double speedLimit;
+	private Position pos;
+
+	public Sign(int speedLimit) {
+	    this.speedLimit = speedLimit;
+    }
 
 }
