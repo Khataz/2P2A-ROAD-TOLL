@@ -10,11 +10,18 @@ public class Road {
         treeSigns = new TreeMap<Position, Sign>();
     }
 
-    public void fillTreeSigns() {
-        /*
-        Sign s1 = new Sign(25);
-        Car c1 = new Car();
-        */
-        //TODO
+    public TreeMap<Position, Sign> getTreeSigns() {
+        return treeSigns;
     }
+
+    public void fillTreeSigns() {
+        Sign s1 = new Sign(new Position(200),25);
+        treeSigns.put(s1.getPosition(), s1);
+
+    }
+
+    public Sign getSignAt(Position pos) {
+        return getTreeSigns().get(pos);
+    }
+
 }
