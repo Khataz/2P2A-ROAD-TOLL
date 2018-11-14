@@ -6,6 +6,7 @@ import body.Car;
 import body.Position;
 import body.Road;
 import body.Sign;
+import body.SpeedLimiter;
 import gui.RoadWindow;
 
 public class Controller {
@@ -23,7 +24,7 @@ public class Controller {
 	    public Controller() throws InterruptedException {
 	    	this.road=new Road();
 	    	this.timedebut=road.getTimeDebut();
-	    	TreeMap<Position, Sign> signs = road.fillTreeSigns();
+	    	TreeMap<Position, SpeedLimiter> signs = road.fillTreeSigns();
 	    	this.window = new RoadWindow(signs);
 	    	Thread.sleep(1000);
 	    	actualizeCar();
@@ -64,7 +65,6 @@ public class Controller {
 
 	public void setTimedebut(long currentTimeMillis) {
 		this.timedebut=currentTimeMillis;
-		
 	}
 	
 	

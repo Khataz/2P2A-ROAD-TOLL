@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import body.Position;
 import body.Sign;
+import body.SpeedLimiter;
 
 public class RoadWindow  extends JFrame implements ActionListener{
 	
@@ -21,7 +22,7 @@ public class RoadWindow  extends JFrame implements ActionListener{
 	private JLabel vitesse = new JLabel();
 	private final double CONVERTISSEUR = 3.6;
 	
-	public RoadWindow(TreeMap<Position, Sign> signs) {
+	public RoadWindow(TreeMap<Position, SpeedLimiter> signs) {
 		super();
 		this.setSize(1366, 768);
 		this.setLayout(null);
@@ -42,8 +43,8 @@ public class RoadWindow  extends JFrame implements ActionListener{
 		this.setVisible(true);
 	}
 	
-	private void setSigns(TreeMap<Position, Sign> signs) {
-		for (Entry<Position, Sign> entry : signs.entrySet())
+	private void setSigns(TreeMap<Position, SpeedLimiter> signs) {
+		for (Entry<Position, SpeedLimiter> entry : signs.entrySet())
 		{
 			JCheckBox s = new JCheckBox();
 			

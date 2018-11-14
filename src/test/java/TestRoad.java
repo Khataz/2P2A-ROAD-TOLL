@@ -12,7 +12,7 @@ public class TestRoad {
     public void testFillTreeSign() {
         Road rd = new Road();
         rd.fillTreeSigns();
-        assertEquals(rd.getSignAt(new Position(250)).getXPosition(), new Sign(new Position(250), 25).getXPosition());
-        assertEquals(rd.getSignAt(new Position(250)).getSpeedLimit(), new Sign(new Position(250), 25).getSpeedLimit());
+        assertEquals(rd.getObjectAt(new Position(250)).getXPosition(), new Sign(new Position(250), 25).getXPosition());
+        assertEquals(rd.getObjectAt(new Position(250)).getSpeedLimit(), new Sign(new Position(250), 25).getSpeedLimit());
     }
 }

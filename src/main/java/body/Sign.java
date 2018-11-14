@@ -1,6 +1,6 @@
 package body;
 
-public class Sign {
+public class Sign implements SpeedLimiter {
 
     private double speedLimit;
 	private Position position;

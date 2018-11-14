@@ -23,25 +23,27 @@ public class Car {
 
     // methods
 	public void changeAcceleration() {
-		Object obj = this.detectObject();
-		if(obj instanceof Sign) {
-			double vf =((Sign) obj).getSpeedLimit();
-			double xf =((Sign)obj).getXPosition();
-			this.acceleration=(((vf*vf)-(speed*speed))/(2*(xf-pos.getX())))/100;
+		SpeedLimiter obj = this.detectObject();
+		if(obj != null) {
+			double vf =obj.getSpeedLimit();
+			double xf =obj.getXPosition();
+			this.acceleration=(((vf*vf)-(speed*speed))/(2*(xf-pos.getX())))/1000;
 	//		System.out.println("Je suis à " + pos.getX() + "m du depart pour aller à " + xf + "m du depart mon acceleration passe du coup à + " + this.getAcceleration());
 			
 		}
+		if(obj == null)
+			this.acceleration=0;
 
 	}
 
-	public Object detectObject() {
+	public SpeedLimiter detectObject() {
 		if(route.getTreeSigns().ceilingKey(pos) == null)
 			return null;			
 		Position panneausuivant = route.getTreeSigns().ceilingKey(pos);
 		if(panneausuivant.getX()-this.pos.getX()>visibility)
 			return null;
 		else 
-			return route.getSignAt(panneausuivant);
+			return route.getObjectAt(panneausuivant);
     }
 
 	/**
