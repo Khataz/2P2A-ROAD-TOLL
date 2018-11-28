@@ -30,7 +30,7 @@ public class Car {
     // methods
 	public void changeAcceleration() {
 		SpeedLimiter obj = this.detectObject();
-		if(!this.isWaiting) {
+		if(!this.isWaiting && obj != null) {
 			if(obj.getSpeedLimit() == 0 && this.getSpeed()==0)
 			{
 				this.passToll();
@@ -43,10 +43,14 @@ public class Car {
 			}
 
 		}
-		else
+		else if(!this.isWaiting)
 		{
 			this.passToll();
 		}
+		else
+        {
+            this.acceleration = 0;
+        }
 	}
 			
 		
@@ -61,10 +65,7 @@ public class Car {
 			return route.getObjectAt(panneausuivant);
     }
 
-	/**
-	 * 
-	 * @param obj
-	 */
+
 	public void passToll() {
 		if(this.beginTimeWaiting==0){
 			randomTime=this.waitingTimeToll+(Math.random()*(3-0+0)+0);
