@@ -15,7 +15,7 @@ public class Road {
     // constructors
     public Road() {
         treeSigns = new TreeMap<>();
-        car = new Car(30.56, 0, new Position(0),this);
+        car = new Car(30.56, 0, new Position(0),this,5);
         timedebut=System.currentTimeMillis();
     }
     
@@ -34,9 +34,11 @@ public class Road {
         Sign s3 = new Sign(new Position(400), 19.44);
         treeSigns.put(s3.getPosition(), s3);
         
-        FastTeleToll t1 = new FastTeleToll(new Position(600));
+        Toll t1 = new Toll(new Position(600));
         treeSigns.put(t1.getPosition(), t1);
         
+        Sign s5 = new Sign(new Position(700), 30.56);
+        treeSigns.put(s5.getPosition(), s5);
 	
         return treeSigns;
     }

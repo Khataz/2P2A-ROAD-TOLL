@@ -9,32 +9,49 @@ public class Car {
 	private static final int visibility = 150;
 	private Position pos;
 	private Road route;
+	private int waitingTimeToll;
+	private boolean isWaiting;
+	private long beginTimeWaiting;
+	private double randomTime = 0;
 
-	public Car(double speed,double acceleration, Position pos,Road route) {
+	public Car(double speed,double acceleration, Position pos,Road route,int waitingTime) {
 		this.route = route;
 	    this.speed = speed;
 	    this.acceleration = acceleration;
 	    this.pos = pos;
+	    this.waitingTimeToll=waitingTime;
+	    this.isWaiting=false;
     }
 
     public Car(Road route) {
-	    this(30.56, 0.0, new Position(),route);
+	    this(30.56, 0.0, new Position(),route,5);
     }
 
     // methods
 	public void changeAcceleration() {
 		SpeedLimiter obj = this.detectObject();
-		if(obj != null) {
-			double vf =obj.getSpeedLimit();
-			double xf =obj.getXPosition();
-			this.acceleration=(((vf*vf)-(speed*speed))/(2*(xf-pos.getX())))/1000;
-	//		System.out.println("Je suis à " + pos.getX() + "m du depart pour aller à " + xf + "m du depart mon acceleration passe du coup à + " + this.getAcceleration());
+		if(!this.isWaiting) {
+			if(obj.getSpeedLimit() == 0 && this.getSpeed()==0)
+			{
+				this.passToll();
+			}
 			
-		}
-		if(obj == null)
-			this.acceleration=0;
+			if(obj.getSpeedLimit()>=0) {
+				double vf =obj.getSpeedLimit();
+				double xf =obj.getXPosition();
+				this.acceleration=(((vf*vf)-(speed*speed))/(2*(xf-pos.getX())))/1000;
+		//		System.out.println("Je suis à " + pos.getX() + "m du depart pour aller à " + xf + "m du depart mon acceleration passe du coup à + " + this.getAcceleration());
+				
+			}
 
+		}
+		else
+		{
+			this.passToll();
+		}
 	}
+			
+		
 
 	public SpeedLimiter detectObject() {
 		if(route.getTreeSigns().ceilingKey(pos) == null)
@@ -48,10 +65,26 @@ public class Car {
 
 	/**
 	 * 
-	 * @param Toll
+	 * @param obj
 	 */
-	public void passToll(AbstractToll Toll) {
-		//TODO
+	public void passToll() {
+		if(this.beginTimeWaiting==0){
+			randomTime=this.waitingTimeToll+(Math.random()*(3-0+0)+0);
+			this.isWaiting=true;
+			this.beginTimeWaiting=System.currentTimeMillis();
+			System.out.println("debut" + randomTime);
+		}
+		if(this.beginTimeWaiting!=0 ) {
+				
+			if((System.currentTimeMillis()-beginTimeWaiting)/1000>=randomTime) {
+				this.isWaiting=false;
+				this.beginTimeWaiting=0;
+				System.out.println("fin");
+				this.setAcceleration(0.0056);
+			}
+		}
+
+		
 	}
 
 	// accessors
