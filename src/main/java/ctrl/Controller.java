@@ -54,8 +54,6 @@ public class Controller {
 	        	{
 	        		car.setAcceleration((car.getSpeed()-beforespeed)/(time-beforetime));
 	        		car.changeAcceleration();
-	        		//System.out.println("A t = " + (time-timedebut)/(double)1000 + "s la voiture se trouve a x = " + car.getPos().getX() + "m avec une vitesse de " + car.getSpeed() + " et une acceleration de " + car.getAcceleration());
-	        		//System.out.println("Vitesse :"+car.getSpeed());
 	        	}
 	        	
 	        	window.actualiseVoit((int)car.getPos().getX());

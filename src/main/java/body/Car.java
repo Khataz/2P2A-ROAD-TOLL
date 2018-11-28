@@ -39,9 +39,7 @@ public class Car {
 			if(obj.getSpeedLimit()>=0) {
 				double vf =obj.getSpeedLimit();
 				double xf =obj.getXPosition();
-				this.acceleration=(((vf*vf)-(speed*speed))/(2*(xf-pos.getX())))/1000;
-		//		System.out.println("Je suis à " + pos.getX() + "m du depart pour aller à " + xf + "m du depart mon acceleration passe du coup à + " + this.getAcceleration());
-				
+				this.acceleration=(((vf*vf)-(speed*speed))/(2*(xf-pos.getX())))/1000;	
 			}
 
 		}
@@ -72,14 +70,12 @@ public class Car {
 			randomTime=this.waitingTimeToll+(Math.random()*(3-0+0)+0);
 			this.isWaiting=true;
 			this.beginTimeWaiting=System.currentTimeMillis();
-			System.out.println("debut" + randomTime);
 		}
 		if(this.beginTimeWaiting!=0 ) {
 				
 			if((System.currentTimeMillis()-beginTimeWaiting)/1000>=randomTime) {
 				this.isWaiting=false;
 				this.beginTimeWaiting=0;
-				System.out.println("fin");
 				this.setAcceleration(0.0056);
 			}
 		}
