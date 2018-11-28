@@ -15,7 +15,7 @@ public class Road {
     // constructors
     public Road() {
         treeSigns = new TreeMap<>();
-        car = new Car(30.56, 0, new Position(0),this,5);
+        car = new Car(30.56, 0, new Position(0),this,1);
         timedebut=System.currentTimeMillis();
     }
     

@@ -13,6 +13,7 @@ public class Car {
 	private boolean isWaiting;
 	private long beginTimeWaiting;
 	private double randomTime = 0;
+	private boolean tollPassed = false;
 
 	public Car(double speed,double acceleration, Position pos,Road route,int waitingTime) {
 		this.route = route;
@@ -32,9 +33,7 @@ public class Car {
 		SpeedLimiter obj = this.detectObject();
 		if(!this.isWaiting && obj != null) {
 			if(obj.getSpeedLimit() == 0 && this.getSpeed()==0)
-			{
 				this.passToll();
-			}
 			
 			if(obj.getSpeedLimit()>=0) {
 				double vf =obj.getSpeedLimit();
@@ -44,13 +43,9 @@ public class Car {
 
 		}
 		else if(!this.isWaiting)
-		{
 			this.passToll();
-		}
 		else
-        {
             this.acceleration = 0;
-        }
 	}
 			
 		
@@ -59,16 +54,22 @@ public class Car {
 		if(route.getTreeSigns().ceilingKey(pos) == null)
 			return null;			
 		Position panneausuivant = route.getTreeSigns().ceilingKey(pos);
-		if(panneausuivant.getX()-this.pos.getX()>visibility)
+		if(tollPassed) {
+            panneausuivant = route.getTreeSigns().ceilingKey(new Position(pos.getX()+1));
+            System.out.println("TOLLPASSED detectObject(): TRUE");
+        }
+
+		if(panneausuivant.getX()-this.pos.getX()>visibility && !tollPassed)
 			return null;
-		else 
+		else
 			return route.getObjectAt(panneausuivant);
     }
 
 
 	public void passToll() {
-		if(this.beginTimeWaiting==0){
+		if(this.beginTimeWaiting==0) {
 			randomTime=this.waitingTimeToll+(Math.random()*(3-0+0)+0);
+			System.out.println("RANDOMTIME:" + randomTime);
 			this.isWaiting=true;
 			this.beginTimeWaiting=System.currentTimeMillis();
 		}
@@ -77,12 +78,11 @@ public class Car {
 			if((System.currentTimeMillis()-beginTimeWaiting)/1000>=randomTime) {
 				this.isWaiting=false;
 				this.beginTimeWaiting=0;
-				this.setPosX(pos.getX()+0.01);
 				this.setAcceleration(0.0056);
+				tollPassed = true;
+				System.out.println("TOLLPASSED passToll(): TRUE");
 			}
 		}
-
-		
 	}
 
 	// accessors
