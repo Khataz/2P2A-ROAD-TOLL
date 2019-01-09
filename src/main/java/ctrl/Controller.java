@@ -1,12 +1,15 @@
 package ctrl;
 
+import java.awt.Color;
 import java.util.TreeMap;
+
+import javax.swing.JPanel;
 
 import body.Car;
 import body.Position;
 import body.Road;
-import body.Sign;
 import body.SpeedLimiter;
+import gui.Panel;
 import gui.RoadWindow;
 
 public class Controller {
@@ -20,12 +23,20 @@ public class Controller {
 	    private double beforespeed;
 	    private Road road;
 	    private RoadWindow window;
+	    private Panel panel;
 	    
 	    public Controller() throws InterruptedException {
 	    	this.road=new Road();
 	    	this.timedebut=road.getTimeDebut();
 	    	TreeMap<Position, SpeedLimiter> signs = road.fillTreeSigns();
 	    	this.window = new RoadWindow(signs);
+	    	this.panel = new Panel(this.window, this.window.voit, this.window.vitesse, this.window.signs);
+	    	this.panel.setLayout(null);
+	    	this.window.setContentPane(this.panel);
+	    	this.window.setVisible(true);
+	    	//this.panel = new Panel();
+	    	
+	    	//this.window.add(panel);
 	    	Thread.sleep(1000);
 	    	actualizeCar();
 	    }

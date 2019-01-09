@@ -78,7 +78,7 @@ public class Car {
 			if((System.currentTimeMillis()-beginTimeWaiting)/1000>=randomTime) {
 				this.isWaiting=false;
 				this.beginTimeWaiting=0;
-				this.setAcceleration(0.0056);
+				this.setAcceleration(0.009);
 				tollPassed = true;
 				System.out.println("TOLLPASSED passToll(): TRUE");
 			}
